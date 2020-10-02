@@ -26,6 +26,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
+
 /**
  *
  * @author hcadavid
@@ -43,6 +45,7 @@ public class MyBatisExample {
         if (sqlSessionFactory == null) {
             InputStream inputStream;
             try {
+            	
                 inputStream = Resources.getResourceAsStream("mybatis-config.xml");
                 sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             } catch (IOException e) {
@@ -62,11 +65,16 @@ public class MyBatisExample {
 
         SqlSession sqlss = sessionfact.openSession();
 
-        
         //Crear el mapper y usarlo: 
-        //ClienteMapper cm=sqlss.getMapper(ClienteMapper.class)
-        //cm...
+        ClienteMapper cm=sqlss.getMapper(ClienteMapper.class);
+        System.out.println(cm.consultarClientes());
         
+        
+        //System.out.println(cm.consultarCliente(80));
+        //cm.agregarItemRentadoACliente(80,4,date(24,07,00),date(28,02,00));
+        //ItemMapper im= sqlss.getMapper(ItemMapper.class);
+        //Item it = new Item(new TipoItem(7,"Documental"),2025,"Cr7","Historia de Cristiano Ronaldo",date(24,07,25),5000, "Compra","Deportivo");
+        //im.insertarItem(it);
         
         
         sqlss.commit();

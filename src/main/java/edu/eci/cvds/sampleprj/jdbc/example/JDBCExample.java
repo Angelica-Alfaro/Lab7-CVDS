@@ -1,4 +1,4 @@
-﻿package edu.eci.cvds.sampleprj.jdbc.example;
+package edu.eci.cvds.sampleprj.jdbc.example;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -43,7 +43,7 @@ public class JDBCExample {
             
             //int suCodigoECI=2156504;
             //registrarNuevoProducto(con, suCodigoECI, "Angélica", 5000000);   
-            con.commit();
+            //con.commit();
                         
             
             con.close();
