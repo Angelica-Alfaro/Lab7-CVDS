@@ -13,9 +13,7 @@ import java.sql.Date;
  * @author 2106913
  */
 public class ItemRentado implements Serializable {
-
     private int id;
-
     private Item item;
     private Date fechainiciorenta;
     private Date fechafinrenta;
@@ -35,6 +33,14 @@ public class ItemRentado implements Serializable {
     }
 
     public void setId(int id) {
+        this.id = id;
+    }
+    
+    public int getId2() {
+        return id;
+    }
+
+    public void setId2(int id) {
         this.id = id;
     }
 

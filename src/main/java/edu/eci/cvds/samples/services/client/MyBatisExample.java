@@ -21,12 +21,18 @@ package edu.eci.cvds.samples.services.client;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
+import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper;
+import edu.eci.cvds.samples.entities.Item;
+import edu.eci.cvds.samples.entities.TipoItem;
 
 /**
  *
@@ -59,32 +65,25 @@ public class MyBatisExample {
      * Programa principal de ejempo de uso de MyBATIS
      * @param args
      * @throws SQLException 
+     * @throws ParseException 
      */
-    public static void main(String args[]) throws SQLException {
+    public static void main(String args[]) throws SQLException, ParseException {
         SqlSessionFactory sessionfact = getSqlSessionFactory();
-
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         SqlSession sqlss = sessionfact.openSession();
 
-        //Crear el mapper y usarlo: 
+        //Crear el mapper y usarlo:- 
         ClienteMapper cm=sqlss.getMapper(ClienteMapper.class);
         System.out.println(cm.consultarClientes());
         
         
-        //System.out.println(cm.consultarCliente(80));
-        //cm.agregarItemRentadoACliente(80,4,date(24,07,00),date(28,02,00));
-        //ItemMapper im= sqlss.getMapper(ItemMapper.class);
-        //Item it = new Item(new TipoItem(7,"Documental"),2025,"Cr7","Historia de Cristiano Ronaldo",date(24,07,25),5000, "Compra","Deportivo");
-        //im.insertarItem(it);
-        
+        //System.out.println(cm.consultarCliente(1));
+        //cm.agregarItemRentadoACliente(1500, 90, dateFormat.parse("2020-09-20"), dateFormat.parse("2021-08-26"));
+        //ItemMapper im= sqlss.getMapper(ItemMapper.class);-
+        //Item it = new Item(new TipoItem(2,"Accion"),2025,"Cr7","Historia de Cristiano Ronaldo",dateFormat.parse("2024-07-25"),5000, "Compra","Deportivo");-
+        //im.insertarItem(it);-
         
         sqlss.commit();
-        
-        
-        sqlss.close();
-
-        
-        
+        sqlss.close();   
     }
-
-
 }
